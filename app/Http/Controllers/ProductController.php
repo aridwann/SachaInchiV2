@@ -10,23 +10,11 @@ use Illuminate\Support\Facades\Storage;
 class ProductController extends Controller
 {
     public static function index(){
-        $products = Product::latest();
-
-        if(request('search')){
-            $products->where('name', 'like', "%".request('search')."%");
-        }
-
-        return view('products', ['products' => $products->get()]);
+        return view('products');
     }
 
     public static function indexAdmin(){
-        $products = Product::latest();
-    
-        if(request('query')){
-            $products->where('name', 'like', '%'.request('query').'%');
-        }
-    
-        return view('dashboard', ['products' => $products->paginate(6)->withQueryString()]);
+        return view('dashboard');
     }
 
     public static function getTop(){
