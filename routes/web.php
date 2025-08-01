@@ -1,5 +1,6 @@
 <?php
 use App\Models\Product;
+use App\Livewire\Profile;
 use App\Http\Middleware\IsAdmin;
 use App\Livewire\DashboardIndex;
 use Illuminate\Support\Facades\Route;
@@ -24,8 +25,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
     Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
     Route::post('/cart/remove-selected', [CartController::class, 'removeSelected'])->name('cart.removeSelected');
-    Route::get('/profile', [UserController::class, 'show']);
-    Route::patch('/profile/{user}', [UserController::class, 'update']);
+    Route::get('/profile', Profile::class);
 });
 
 Route::middleware([IsAdmin::class])->group(function () {

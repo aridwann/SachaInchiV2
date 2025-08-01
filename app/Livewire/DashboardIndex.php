@@ -25,7 +25,7 @@ class DashboardIndex extends Component
 
         $status = $product->ishide? 'disembunyikan' : 'ditampilkan';
         
-        $this->dispatch('show-flash', "Produk berhasil $status.");
+        $this->dispatch('success', "Produk berhasil $status.");
     }
 
     public function destroy(Product $product){
@@ -33,7 +33,7 @@ class DashboardIndex extends Component
             Storage::disk(config('filesystems.default_public_disk'))->delete(str_replace('storage/', '', $product->img));
         }
         $product->delete();
-        $this->dispatch('show-flash', 'Produk berhasil dihapus.');
+        $this->dispatch('success', 'Produk berhasil dihapus.');
     }
 
     public function render()

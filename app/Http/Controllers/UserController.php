@@ -62,27 +62,6 @@ class UserController extends Controller
     }
 
     public function show(){
-        return view('profile', ['user' => Auth::user()]);
-    }
-
-    public function update(Request $request, User $user)
-    {
-        // dd($request->all());
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'phone' => 'required|numeric',
-            'address' => 'required|string',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120'
-        ]);
-        
-        if ($request->hasFile('avatar')) {
-            if ($user->avatar) {
-                Storage::disk(config('filesystems.default_public_disk'))->delete(str_replace('storage/', '', $user->avatar));
-            }
-            $validated['avatar'] = 'storage/'.$request->file('avatar')->store('user-images', config('filesystems.default_public_disk'));
-        }
-        $user->update($validated);
-        
-        return redirect("/profile")->with('success', 'Profil berhasil diperbarui.');
+        return view('profile');
     }
 }

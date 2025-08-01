@@ -1,9 +1,6 @@
 <div class="px-1 lg:px-40 flex flex-1 justify-center py-5">
     <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-        <div x-data="{ show: false, message: '' }"
-            x-on:show-flash.window="message= $event.detail; show= true; setTimeout(()=>show=false, 3000)" x-show="show"
-            x-text="message" x-transition.duration.500ms
-            class="bg-green-100 text-green-800 p-3 mx-4 rounded mb-4 transition"></div>
+        <x-toast />
         <div class="flex flex-wrap justify-between gap-3 p-4">
             <p class="text-white tracking-light text-2xl md:text-[32px] font-bold leading-tight min-w-72">Kelola
                 Produk</p>
