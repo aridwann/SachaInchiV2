@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,10 +10,6 @@ class ProductController extends Controller
 {
     public static function index(){
         return view('products');
-    }
-
-    public static function indexAdmin(){
-        return view('dashboard');
     }
 
     public static function getTop(){
@@ -70,23 +65,6 @@ class ProductController extends Controller
 
         Product::create($validated);        
         return redirect("/dashboard")->with('success', 'Produk berhasil ditambahkan.');
-    }
-    
-    public function updateishide(Product $product)
-    {
-        $product->update([
-            'ishide' => !$product->ishide
-        ]);
-        
-        return redirect("/dashboard")->with('success', 'Status produk berhasil diperbarui.');
-    }
-
-    public function destroy(Product $product){
-        if (!str_contains($product->img, 'img/')) {
-            Storage::disk(config('filesystems.default_public_disk'))->delete(str_replace('storage/', '', $product->img));
-        }
-        $product->delete();
-        return redirect("dashboard")->with('success', 'Produk berhasil dihapus.');
     }
 
     public function create()

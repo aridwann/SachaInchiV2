@@ -88,13 +88,13 @@
             </form>
         </div>
     </div>
-</x-layout>
-<script>
-    const img = document.getElementById('img');
-    const preview = document.getElementById('preview');
+    <script>
+        const img = document.getElementById('img');
+        const preview = document.getElementById('preview');
 
-    img.addEventListener('change', function() {
-        const file = this.files[0];
-        preview.src = URL.createObjectURL(file);
-    });
-</script>
+        img.addEventListener('change', function() {
+            const file = this.files[0];
+            preview.src = URL.createObjectURL(file);
+        });
+    </script>
+</x-layout>

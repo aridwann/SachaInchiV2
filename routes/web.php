@@ -1,6 +1,7 @@
 <?php
 use App\Models\Product;
 use App\Http\Middleware\IsAdmin;
+use App\Livewire\DashboardIndex;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
@@ -28,11 +29,9 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware([IsAdmin::class])->group(function () {
-    Route::get('/dashboard', [ProductController::class, 'indexAdmin']);
+    Route::get('/dashboard', DashboardIndex::class);
     Route::get('/dashboard/create', [ProductController::class, 'create'])->name('products.create');
     Route::post('/dashboard', [ProductController::class, 'store'])->name('products.store');
     Route::get('/dashboard/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::patch('/dashboard/{product}', [ProductController::class, 'update'])->name('products.update');
-    Route::patch('/dashboard/{product}/ishide', [ProductController::class, 'updateishide'])->name('products.updateishide');
-    Route::delete('/dashboard/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 });
