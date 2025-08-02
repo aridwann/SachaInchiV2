@@ -8,10 +8,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    public static function index(){
-        return view('products');
-    }
-
     public static function getTop(){
         return view('landingpage', [
             'products' => Product::where('ishide', false)->take(3)->get()

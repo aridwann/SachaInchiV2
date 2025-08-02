@@ -1,6 +1,7 @@
 <?php
 use App\Models\Product;
 use App\Livewire\Profile;
+use App\Livewire\Products;
 use App\Http\Middleware\IsAdmin;
 use App\Livewire\DashboardIndex;
 use Illuminate\Support\Facades\Route;
@@ -9,7 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 
 Route::get('/', [ProductController::class, 'getTop']);
-Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products', Products::class);
 Route::get('/products/{product}', [ProductController::class, 'show']);
 
 Route::get('/login', [UserController::class, 'showLogin'])->name('login');
